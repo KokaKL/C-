@@ -11,19 +11,7 @@ for (int i = 2; i < 10; i++)
 
 // Дан текст. В нём нужно все пробелы заменить чёрточками, маленькие буквы «к»
 // заменить большими «К», а большие «С» заменить на маленькие «с».
-// Первым делом, которым вы должны себе отметить. Это ясна ли вам задача? В частности:
-// ● Что значит «Дан текст»? Как вы уже помните, из предыдущих лекций, дан – это
-// непонятно. Ввёл пользователь? Считали из файла? Взяли с базы данных? Из какого-то
-// сервиса может быть, скачали и так далее. Поэтому чётко определяем для себя, что
-// значит, дан. В нашем случае мы будем считать, что он просто будет храниться как
-// отдельная строка.
-// ● Что значит «чёрточками»? Например, в русском языке мы можем сразу же выделить
-// тире, дефис и ещё можно добавить минус.
-// ● Какой алфавит у нас? Это может быть кириллица, в этом случае буква «к» одна. А
-// может быть латиница, тогда буква «к» уже какой-то другой символом. При этом буквы
-// «C» и «с» мало того что на одной кнопке находится, так ещё и выглядят одинаково. И
-// хотя для нас они выглядят вроде бы одинаково, для компьютера это абсолютно разные
-// символы.
+
 
 string text = "— Я думаю, — сказал князь, улыбаясь, — что,"
     + "ежели бы вас послали вместо нашего милого Винценгероде,"
@@ -38,24 +26,61 @@ string replace(string text, char oldValue, char newValue)
     {
         if (text[i] == oldValue)
         {
-         result = result + $"{newValue}" ;   
+            result = result + $"{newValue}";
         }
         else
         {
-            result = result + $"{text[i]}" ;
+            result = result + $"{text[i]}";
         }
     }
     return result;
 }
 
-string newText = replace(text,' ', '|');
+string newText = replace(text, ' ', '|');
 System.Console.WriteLine(newText);
 System.Console.WriteLine();
 
-newText = replace (newText, 'к', 'К');
+newText = replace(newText, 'к', 'К');
 System.Console.WriteLine(newText);
 System.Console.WriteLine();
 
-newText = replace (newText, 'с', 'С');
+newText = replace(newText, 'с', 'С');
 System.Console.WriteLine(newText);
 System.Console.WriteLine();
+
+
+//задача с упорядовачиванием массива
+int[] arr = { 1, 5, 5, 4, 2, 6, 7, 1, 1 };
+
+void printArray(int[] array)
+{
+    int count = array.Length;
+    for (int i = 0; i < count; i++)
+    {
+        System.Console.Write($"{array[i]}");
+    }
+    Console.WriteLine();
+}
+void SelectionSort(int[] array)
+{
+    for (int i = 0; i < array.Length - 1 ; i++)
+    {
+        int minPosition = i;
+        for (int j = i + 1; j < array.Length; j++)
+        {
+            if (array[j] < array[minPosition])
+            {
+                minPosition = j;
+
+            }
+        }
+        int temp = array[i];
+        array[i] = array[minPosition];
+        array[minPosition] = temp;
+    }
+}
+
+printArray(arr);
+SelectionSort(arr);
+
+printArray(arr);
